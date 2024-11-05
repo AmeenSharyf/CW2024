@@ -41,14 +41,12 @@ public class Controller implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		try {
-			goToLevel((String) arg1);
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText(e.getClass().toString());
-			alert.show();
-		}
+	    try {
+	        goToLevel((String) arg1);
+	    } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+	            | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+	        e.printStackTrace();// deleted old code and used this because its more detailed and other one wasnt fully done by developer
+	    }
 	}
 
 }
