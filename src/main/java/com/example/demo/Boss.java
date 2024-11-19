@@ -9,22 +9,21 @@ public class Boss extends FighterPlane {
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 75.0;
 	private static final double BOSS_FIRE_RATE = .04;
-	private static final double BOSS_SHIELD_PROBABILITY = 0.5;
+	private static final double BOSS_SHIELD_PROBABILITY = .002;
 	private static final int IMAGE_HEIGHT = 300;
 	private static final int VERTICAL_VELOCITY = 8;
-	private static final int HEALTH = 1;
+	private static final int HEALTH = 100;
 	private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
 	private static final int ZERO = 0;
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
 	private static final int Y_POSITION_UPPER_BOUND = -100;
 	private static final int Y_POSITION_LOWER_BOUND = 475;
-	private static final int MAX_FRAMES_WITH_SHIELD = 100;
+	private static final int MAX_FRAMES_WITH_SHIELD = 500;
 	private final List<Integer> movePattern;
 	private boolean isShielded;
 	private int consecutiveMovesInSameDirection;
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
-	private ShieldImage shieldImage;
 
 	public Boss() {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
@@ -34,7 +33,6 @@ public class Boss extends FighterPlane {
 		framesWithShieldActivated = 0;
 		isShielded = false;
 		initializeMovePattern();
-		shieldImage = new ShieldImage(INITIAL_X_POSITION,INITIAL_Y_POSITION);
 	}
 
 	@Override
@@ -46,16 +44,11 @@ public class Boss extends FighterPlane {
 			setTranslateY(initialTranslateY);
 		}
 	}
-	public void ShieldPosition(){//syncs shield position with boss
-		shieldImage.setLayoutX(this.getLayoutX()+this.getTranslateX());
-		shieldImage.setLayoutY(this.getLayoutY()+this.getTranslateY());
-	}
-
+	
 	@Override
 	public void updateActor() {
 		updatePosition();
 		updateShield();
-		ShieldPosition();//sync with boss
 	}
 
 	@Override
@@ -79,6 +72,11 @@ public class Boss extends FighterPlane {
 		Collections.shuffle(movePattern);
 	}
 
+	private void updateShield() {
+		if (isShielded) framesWithShieldActivated++;
+		else if (shieldShouldBeActivated()) activateShield();	
+		if (shieldExhausted()) deactivateShield();
+	}
 
 	private int getNextMove() {
 		int currentMove = movePattern.get(indexOfCurrentMove);
@@ -112,21 +110,11 @@ public class Boss extends FighterPlane {
 
 	private void activateShield() {
 		isShielded = true;
-		shieldImage.showShield();
 	}
 
 	private void deactivateShield() {
 		isShielded = false;
 		framesWithShieldActivated = 0;
-		shieldImage.hideShield();
-	}
-	private void updateShield() {
-		if (isShielded) framesWithShieldActivated++;
-		else if (shieldShouldBeActivated()) activateShield();
-		if (shieldExhausted()) deactivateShield();
-	}
-	public ShieldImage getShieldImage() {//used to add to the scene graph in level two class
-		return shieldImage;
 	}
 
 }

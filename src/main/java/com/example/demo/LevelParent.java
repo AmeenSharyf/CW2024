@@ -74,8 +74,7 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void goToNextLevel(String levelName) {
-		timeline.stop();//stops from previous level from loading several times hence can transition properly
-		setChanged();//to be considered to change when adding new levels
+		setChanged();
 		notifyObservers(levelName);
 	}
 
