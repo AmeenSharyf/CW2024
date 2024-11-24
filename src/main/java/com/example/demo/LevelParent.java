@@ -117,8 +117,8 @@ public abstract class LevelParent extends Observable {
 		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP || kc == KeyCode.DOWN) user.Verticalstop();//added stop functionality for vertical movement when key released
-				if(kc == KeyCode.LEFT || kc == KeyCode.RIGHT) user.Horizontalstop();//added stop functionality for horizontal movement when key released
+				if (kc == KeyCode.W || kc == KeyCode.S) user.Verticalstop();//added stop functionality for vertical movement when key released
+				if(kc == KeyCode.A || kc == KeyCode.D) user.Horizontalstop();//added stop functionality for horizontal movement when key released
 
 
 			}
