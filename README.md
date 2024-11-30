@@ -13,8 +13,17 @@
 The method calls that led to the exception.The line numbers in the source code where each method was invoked.This is more useful for developers during debugging as it helps them trace the exact sequence of events that caused the error.Which in turn helped me to fix the Switch level Crash <br><br>
 
 ### 2.LevelParent.java
-- Changes: 
+- Changes: Within public void goToNextLevel added timeline.stop method.
+- Reasoning:Helped stop CheckGameOver method from level one being run several times during the time frame of transitioning to another level (Refer Unexpected Problems 2 for more information)
+### 3.ShieldImage.java
+- Changes: Within public ShieldImage replaces the directory within the chain of methods in this.image with the variable IMAGE_NAME and changed the variable to the proper directory
+- Reasoning: To achieve:<br>
+  --Maintainability such as easier to update <br>
+  --Readability such as meaningful variable making it easier to understand the code and adds clarity<br>
+ --Reusability such as having the image path stored in a constant makes it easier to reuse as the same varible can be used preventing the same string being manually written<br>
+  --Error Prevention such as when working with files or resources, the paths are prone to errors. Using a constant ensures that the path is correct in all instances where it's used. It can also be easier to handle the path centrally if needed (e.g.for validation or debugging).<br>
 ## Unexpected Problems:
+
 
 
 ### 1.Switch level Crash
