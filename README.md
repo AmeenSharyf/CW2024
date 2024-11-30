@@ -23,7 +23,8 @@ The method calls that led to the exception.The line numbers in the source code w
  --Reusability such as having the image path stored in a constant makes it easier to reuse as the same varible can be used preventing the same string being manually written<br>
   --Error Prevention such as when working with files or resources, the paths are prone to errors. Using a constant ensures that the path is correct in all instances where it's used. It can also be easier to handle the path centrally if needed (e.g.for validation or debugging).<br>
   ### 4.Boss.java
-  -Changes: Created  private ShieldImage.java objecte called shieldImage ---> Within Constructor 
+  -Changes: Created  private ShieldImage.java object called shieldImage ---> Within Constructor initialized the aforementioned object --> Created ShieldPosition method within sets the X and Y axis of the image in line with the boss enemy's Y axis and X axis ---> Added the ShieldPosition method to the UpdateActor methold so it would sync with boss movement when movement is updated ---> Added shieldimage.showShield method  to ActivateSheild method so the shield would be visible when ActivateShield is called ---> Added shieldimage.hideshield method to DeactivateShield method so the shield would not be visible when DeactivateShield is called ---> Created getShieldImage method that returns instance(shieldImage) of class ShieldImage
+  Reasoning: These changes ensure that the boss can have a shield that moves with it, activates and deactivates correctly, and is visible at the appropriate times. The shieldImage object encapsulates the shield's functionality, while the various methods allow for synchronization with the boss and management of the shield's visibility. The getShieldImage method makes the shield accessible to other parts of the game, enabling its inclusion in the scene.
 ## Unexpected Problems:
 
 
@@ -41,7 +42,7 @@ The method calls that led to the exception.The line numbers in the source code w
 - Fixing the error:I added timeline.stop method to the standalone method called public void goToNextLevel in LevelParent.java which would stop the gamelogic entirely right before the transition to nextlevel using method CheckIfGameOver(LevelOne.java).(Refer to heading Modified Java Class in subheading(2) for more technicality)<br><br>
 -Reasoning behind the error:When method CheckIfGameOver(LevelOne.java) is called right after using meets the condition to transition what happens is the next level is loaded several times within the short span of 50ms several times resulting in heap memory being consumed since no guard mechanism exit for the transition when the gamelogic is being updated.<br><br>
 
-### 3.Shield Not Displaying 
+### 3.Shield Not Displaying & not parallel with Enemy Boss
 - Meeting the error: When transitioning to level two the shield image isnt displayed but the shield works
 - Pinpointing the error: From the knowledge regarding stage,scene,root the shield wasnt properly added to the root relating to the scene (Logical Reasoning).
 - Fixing the error: Created ShieldImage object called shieldImage(IMPORTANT) in boss.class ---> Created ShieldPosition method syncing shield image with the boss ---> added ShieldPosition to updateActor so the shieldposition would be updated with the boss poition ---> added shieldImage.showShield method to activateShield method so shield would be visible when activateShield is called ---> added shieldImage.HideShield method to deactivateshield so the shield wont be visible when gone ---> then (IMPORTANT)  created method that returns ShieldImage class object hence returning shieldImage instance ---> In LevelTwo in SpawnEnemyUnits method added the object shieldImage instance to the root using the aforementioned method.
