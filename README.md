@@ -6,6 +6,9 @@
 ## Implemented but Not Working Properly:
 ## Features not implemented:
 ## New Java Classes:
+### 1.Menu.java
+### 2.ButtonImage.java
+### 3.MenuImage.java
 ## Modified Java Classes:
 ### 1.Controller.java(1)
 - Changes: Within the public void update method replaced alert error handling method with e.printstacktrace<br><br>
@@ -20,10 +23,10 @@ The method calls that led to the exception.The line numbers in the source code w
 - Reasoning: To achieve:<br>
   --Maintainability such as easier to update <br>
   --Readability such as meaningful variable making it easier to understand the code and adds clarity<br>
- --Reusability such as having the image path stored in a constant makes it easier to reuse as the same varible can be used preventing the same string being manually written<br>
+ --Reusability such as having the image path stored in a constant makes it easier to reuse as the same varible can be used preventing the same string being manually written<br><br>
   --Error Prevention such as when working with files or resources, the paths are prone to errors. Using a constant ensures that the path is correct in all instances where it's used. It can also be easier to handle the path centrally if needed (e.g.for validation or debugging).<br>
   ### 4.Boss.java
-  -Changes: Created  private ShieldImage.java object called shieldImage ---> Within Constructor initialized the aforementioned object --> Created ShieldPosition method within sets the X and Y axis of the image in line with the boss enemy's Y axis and X axis ---> Added the ShieldPosition method to the UpdateActor methold so it would sync with boss movement when movement is updated ---> Added shieldimage.showShield method  to ActivateSheild method so the shield would be visible when ActivateShield is called ---> Added shieldimage.hideshield method to DeactivateShield method so the shield would not be visible when DeactivateShield is called ---> Created getShieldImage method that returns instance(shieldImage) of class ShieldImage
+  - Changes: Created  private ShieldImage.java object called shieldImage ---> Within Constructor initialized the aforementioned object --> Created ShieldPosition method within sets the X and Y axis of the image in line with the boss enemy's Y axis and X axis ---> Added the ShieldPosition method to the UpdateActor methold so it would sync with boss movement when movement is updated ---> Added shieldimage.showShield method  to ActivateSheild method so the shield would be visible when ActivateShield is called ---> Added shieldimage.hideshield method to DeactivateShield method so the shield would not be visible when DeactivateShield is called ---> Created getShieldImage method that returns instance(shieldImage) of class ShieldImage<br><br>
   Reasoning: These changes ensure that the boss can have a shield that moves with it, activates and deactivates correctly, and is visible at the appropriate times. The shieldImage object encapsulates the shield's functionality, while the various methods allow for synchronization with the boss and management of the shield's visibility. The getShieldImage method makes the shield accessible to other parts of the game, enabling its inclusion in the scene.
 ## Unexpected Problems:
 
@@ -40,7 +43,7 @@ The method calls that led to the exception.The line numbers in the source code w
 - Meeting the error:When first level is finished which results in the loading of second level caused high ram usage hence depending on the run causes crashing due to exceeding heap memory.<br><br>
 - Pinpointing the error:Using Intellij Profiler I was able to find out which method was causing highest usage of heap memory which would be the method in levelone class called public void CheckIfGameOver.<br><br>
 - Fixing the error:I added timeline.stop method to the standalone method called public void goToNextLevel in LevelParent.java which would stop the gamelogic entirely right before the transition to nextlevel using method CheckIfGameOver(LevelOne.java).(Refer to heading Modified Java Class in subheading(2) for more technicality)<br><br>
--Reasoning behind the error:When method CheckIfGameOver(LevelOne.java) is called right after using meets the condition to transition what happens is the next level is loaded several times within the short span of 50ms several times resulting in heap memory being consumed since no guard mechanism exit for the transition when the gamelogic is being updated.<br><br>
+- Reasoning behind the error:When method CheckIfGameOver(LevelOne.java) is called right after using meets the condition to transition what happens is the next level is loaded several times within the short span of 50ms several times resulting in heap memory being consumed since no guard mechanism exit for the transition when the gamelogic is being updated.<br><br>
 
 ### 3.Shield Not Displaying & not parallel with Enemy Boss
 - Meeting the error: When transitioning to level two the shield image isnt displayed but the shield works
