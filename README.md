@@ -7,8 +7,14 @@
 ## Features not implemented:
 ## New Java Classes:
 ### 1.Menu.java
+- Description: The Menu class provides the core functionality for the main menu of the "Sky Battle" game. It includes graphical components such as a background image and buttons for navigation. The buttons trigger actions like starting the game, accessing settings, or exiting the application. The class uses JavaFX's layout managers (GridPane, StackPane) to ensure the interface is organized and user-friendly.<br>
+- Location:
 ### 2.ButtonImage.java
+- Description: The ButtonImage class simplifies the process of creating image-based buttons in a JavaFX application. It abstracts the repetitive steps of loading an image, resizing it, and ensuring its visibility. The class is reusable and allows easy addition of new buttons without needing to repeat code, making it efficient for applications that require multiple image-based buttons. <br>
+- Location: 
 ### 3.MenuImage.java
+- Description: The MenuImage class is a specialized ImageView used for displaying images, especially background images, in the game menu. It allows for easy setup of the image's position, size, and visibility. This class promotes code reuse by providing a single template for handling background images, making it easier to manage and modify the graphical elements in the game’s user interface.<br>
+- Location
 ## Modified Java Classes:
 ### 1.Controller.java(1)
 - Changes: Within the public void update method replaced alert error handling method with e.printstacktrace<br><br>
@@ -27,7 +33,10 @@ The method calls that led to the exception.The line numbers in the source code w
   --Error Prevention such as when working with files or resources, the paths are prone to errors. Using a constant ensures that the path is correct in all instances where it's used. It can also be easier to handle the path centrally if needed (e.g.for validation or debugging).<br>
   ### 4.Boss.java
   - Changes: Created  private ShieldImage.java object called shieldImage ---> Within Constructor initialized the aforementioned object --> Created ShieldPosition method within sets the X and Y axis of the image in line with the boss enemy's Y axis and X axis ---> Added the ShieldPosition method to the UpdateActor methold so it would sync with boss movement when movement is updated ---> Added shieldimage.showShield method  to ActivateSheild method so the shield would be visible when ActivateShield is called ---> Added shieldimage.hideshield method to DeactivateShield method so the shield would not be visible when DeactivateShield is called ---> Created getShieldImage method that returns instance(shieldImage) of class ShieldImage<br><br>
-  Reasoning: These changes ensure that the boss can have a shield that moves with it, activates and deactivates correctly, and is visible at the appropriate times. The shieldImage object encapsulates the shield's functionality, while the various methods allow for synchronization with the boss and management of the shield's visibility. The getShieldImage method makes the shield accessible to other parts of the game, enabling its inclusion in the scene.
+- Reasoning: These changes ensure that the boss can have a shield that moves with it, activates and deactivates correctly, and is visible at the appropriate times. The shieldImage object encapsulates the shield's functionality, while the various methods allow for synchronization with the boss and management of the shield's visibility. The getShieldImage method makes the shield accessible to other parts of the game, enabling its inclusion in the scene.<br>
+### 5.Main.java
+- Changes: Converts private Controller myController to protected ---> Delete all private variables and unnecessary imports such java.lang.reflect.invocationTargetException ---> remove uneccessary  throws start method only keep SecurityException,IllegalArguementException --->  Everything from in start method deleted ---> Within Start Method create instance of Menu class ---> call MenuConfig using the object ---> call Menu Show using the object<br>
+- Reasoning: This change provides a more interactive, user-friendly approach where the user is presented with a main menu before the game starts. It also gives you flexibility to build out the game with additional menu features or configurations in the future.Moreover, by separating the main menu from the game logic, you make the game flow more modular and structured. <br>
 ## Unexpected Problems:
 
 
