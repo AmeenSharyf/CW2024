@@ -3,7 +3,7 @@
 ## Github:
 ## Compilation Instructions:
 ## Implemented and Working Properly:
-###Feature 1
+### Feature 1
 - Main Menu: provides a clean, interactive starting point for the game, allowing users to easily navigate between the start of the game, settings, and exit options. It utilizes JavaFX layout components to create a structured and visually appealing UI. The main menu is fully functional with the start game and exit buttons, and it is designed to be extensible for additional menu options in the future, such as settings or high scores.
 ###Feature 2
 -WASD movement:a control scheme used in video games where the W, A, S, and D keys are used to move the player’s character or object W:Move up, A:Move left ,S:Move down ,D:Move right.This setup is common for PC games, allowing intuitive movement in 2D or 3D environments. In the feature code, the player's character moves according to the key pressed, with stop functionality added when the keys are released.
@@ -24,7 +24,7 @@
 - Description: The MenuImage class is a specialized ImageView used for displaying images, especially background images, in the game menu. It allows for easy setup of the image's position, size, and visibility. This class promotes code reuse by providing a single template for handling background images, making it easier to manage and modify the graphical elements in the game’s user interface.<br>
 - Location
 ## Modified Java Classes:
-### 1.Controller.java(1)
+### 1.Controller.java
 - Changes: Within the public void update method replaced alert error handling method with e.printstacktrace<br><br>
 - Reasoning: The original code used an Alert to show the error to the user. However, it only displayed the class name of the exception (e.g., java.lang.NullPointerException), which was not very informative for debugging, nor did it provide enough detail to help developers understand what went wrong. The change to e.printStackTrace() provides a more detailed view of the error. When an exception is caught, the stack trace includes:The exception type (e.g., NullPointerException).
 The method calls that led to the exception.The line numbers in the source code where each method was invoked.This is more useful for developers during debugging as it helps them trace the exact sequence of events that caused the error.Which in turn helped me to fix the Switch level Crash <br><br>
