@@ -79,26 +79,26 @@ public abstract class LevelParent extends Observable {
 		notifyObservers(levelName);
 	}
 
-	private void updateScene() {
-		spawnEnemyUnits();
-		updateActors();
-		generateEnemyFire();
-		updateNumberOfEnemies();
-		handleEnemyPenetration();
-		handleUserProjectileCollisions();
-		handleEnemyProjectileCollisions();
-		handlePlaneCollisions();
-		removeAllDestroyedActors();
-		updateKillCount();
-		updateLevelView();
-		checkIfGameOver();
-	}
+		private void updateScene() {
+			spawnEnemyUnits();
+			updateActors();
+			generateEnemyFire();
+			updateNumberOfEnemies();
+			handleEnemyPenetration();
+			handleUserProjectileCollisions();
+			handleEnemyProjectileCollisions();
+			handlePlaneCollisions();
+			removeAllDestroyedActors();
+			updateKillCount();
+			updateLevelView();
+			checkIfGameOver();
+		}
 
-	private void initializeTimeline() {
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
-		timeline.getKeyFrames().add(gameLoop);
-	}
+		private void initializeTimeline() {
+			timeline.setCycleCount(Timeline.INDEFINITE);
+			KeyFrame gameLoop = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> updateScene());
+			timeline.getKeyFrames().add(gameLoop);
+		}
 
 	private void initializeBackground() {
 		background.setFocusTraversable(true);
@@ -212,12 +212,14 @@ public abstract class LevelParent extends Observable {
 
 	protected void winGame() {
 		timeline.stop();
-		levelView.showWinImage();
+		EndingMenu.MenuEnding(getRoot());
+
 	}
 
 	protected void loseGame() {
 		timeline.stop();
 		levelView.showGameOverImage();
+		EndingMenu.MenuEnding(getRoot());
 	}
 
 	protected UserPlane getUser() {

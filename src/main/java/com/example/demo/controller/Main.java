@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
-import java.lang.reflect.InvocationTargetException;
-
 import com.example.demo.Menu;
+import com.example.demo.Window;
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+
 import javafx.stage.Stage;
 
 
@@ -14,12 +12,14 @@ public class Main extends Application {
 	protected Controller myController;
 
 	@Override
-	public void start(Stage stage) throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void start(Stage stage) throws  SecurityException, IllegalArgumentException {
+		Window win = Window.getInstance();
+		stage = win.getStage();
+     Menu menu = Menu.getMenu(stage);
+	 menu.MenuConfig();
+	 menu.MenuShow();
 
-       Menu menu = new Menu(stage);
-	   menu.MenuConfig();//creates the mainmenu
-	   menu.MenuShow();//shows the stage
+
 
 	}
 

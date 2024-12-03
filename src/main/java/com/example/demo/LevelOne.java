@@ -5,9 +5,10 @@ public class LevelOne extends LevelParent {
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.jpg";
 	private static final String NEXT_LEVEL = "com.example.demo.LevelTwo";
 	private static final int TOTAL_ENEMIES = 5;
-	private static final int KILLS_TO_ADVANCE = 10;
+	private static final int KILLS_TO_ADVANCE = 1;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
 	private static final int PLAYER_INITIAL_HEALTH = 5;
+	private boolean flag = false;
 
 	public LevelOne(double screenHeight, double screenWidth) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
@@ -15,11 +16,15 @@ public class LevelOne extends LevelParent {
 
 	@Override
 	protected void checkIfGameOver() {
-		if (userIsDestroyed()) {
+		if (userIsDestroyed() && flag == false) {
+			flag = true;
 			loseGame();
 		}
-		else if (userHasReachedKillTarget())
+		else if (userHasReachedKillTarget() && flag == false) {
+			flag = true;
+			getRoot().getChildren().clear();
 			goToNextLevel(NEXT_LEVEL);
+		}
 	}
 
 	@Override

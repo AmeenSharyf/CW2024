@@ -14,6 +14,7 @@ public class UserPlane extends FighterPlane {
 	private static final int HORIZONTAL_VELOCITY = 8;
 	private static final int PROJECTILE_X_POSITION = 110;
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+	private static final int PROJECTILE_X_POSITION_OFFSET = 20;
 	private int HorizontalvelocityMultiplier;//added horizontal multiplier variable
 	private int VerticalvelocityMultiplier;//renamed velocity variable
 	private int numberOfKills;
@@ -55,7 +56,7 @@ public class UserPlane extends FighterPlane {
 
 	@Override
 	public ActiveActorDestructible fireProjectile() {
-		return new UserProjectile(PROJECTILE_X_POSITION, getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
+		return new UserProjectile(getProjectileXPosition(PROJECTILE_X_POSITION_OFFSET) ,getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
 	private boolean HorizontalMoving() {//new horizontal notstationary
