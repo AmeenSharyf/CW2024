@@ -1,7 +1,4 @@
-/**
- * This class represents the main menu of the application, handling UI setup, button actions,
- * and scene management for the game's main menu.
- */
+
 package Menus;
 
 import ImageClass.ButtonImage;
@@ -18,9 +15,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- * The type Menu.
- */
+
 public class Menu extends Main {
     private static Menu menu;
     private static final int SCREEN_WIDTH = 1300;
@@ -33,11 +28,7 @@ public class Menu extends Main {
     private static MenuImage background;
     private static ButtonImage StartGameButton, SettingGameButton, ExitGameButton;
 
-    /**
-     * Private constructor for Singleton pattern.
-     *
-     * @param stage The primary stage for this application.
-     */
+
     private Menu(Stage stage) {
         Image icon = new Image(getClass().getResource("/com/example/demo/images/MenuRelated/Icon.jpg").toExternalForm());
         stage.getIcons().add(icon);
@@ -57,12 +48,7 @@ public class Menu extends Main {
         });
     }
 
-    /**
-     * Singleton method to get the Menu instance.
-     *
-     * @param stage The primary stage for this application.
-     * @return The single instance of Menu.
-     */
+
     public static Menu getMenu(Stage stage) {
         if (menu == null) {
             menu = new Menu(stage);
@@ -70,18 +56,12 @@ public class Menu extends Main {
         return menu;
     }
 
-    /**
-     * Update the root group for the scene.
-     *
-     * @param root The new root group.
-     */
+
     public void UpdateRoot(Group root) {
         this.root = root;
     }
 
-    /**
-     * Configure the main menu UI including background and buttons.
-     */
+
     public void MenuConfig() {
         StackPane stack = createStackPane();
         GridPane grid = createButtonGrid();
@@ -93,9 +73,7 @@ public class Menu extends Main {
         root.getChildren().add(stack);
     }
 
-    /**
-     * Initialize the UI components such as background and buttons.
-     */
+
     private void initializeUIComponents() {
         if (background == null) {
             background = new MenuImage(0, 0, "/com/example/demo/images/MenuRelated/mainmenu.png", 750, 1300, 1);
@@ -117,15 +95,7 @@ public class Menu extends Main {
         }
     }
 
-    /**
-     * Create a button with click event functionality.
-     *
-     * @param imagePath    The path to the button image.
-     * @param width        The button width.
-     * @param height       The button height.
-     * @param onClickAction The action to perform when the button is clicked.
-     * @return The created ButtonImage instance.
-     */
+
     private ButtonImage createButton(String imagePath, int width, int height, Runnable onClickAction) {
         ButtonImage button = new ButtonImage(imagePath, width, height);
         button.setOnMouseClicked(event -> {
@@ -139,11 +109,7 @@ public class Menu extends Main {
         return button;
     }
 
-    /**
-     * Create a GridPane with buttons arranged.
-     *
-     * @return The configured GridPane.
-     */
+
     private GridPane createButtonGrid() {
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -161,49 +127,34 @@ public class Menu extends Main {
         return grid;
     }
 
-    /**
-     * Create the StackPane for layout organization.
-     *
-     * @return The created StackPane.
-     */
+
     private StackPane createStackPane() {
         initializeUIComponents(); // Ensure components are initialized
         return new StackPane();
     }
 
-    /**
-     * Start the game when the "Start Game" button is clicked.
-     *
-     * @throws Exception If any error occurs during the game launch.
-     */
+
     public void startGame() throws Exception {
         myController = new Controller(stage);
         myController.launchGame();
     }
 
-    /**
-     * Open the settings menu when the "Settings" button is clicked.
-     */
+
     public void settingGame() {
         System.out.println("SettingGame " + root);
         SettingMenu.GetSettingMenu(root);
         SettingMenu.settingMenu.configureSettings();
     }
 
-    /**
-     * Exit the game when the "Exit" button is clicked.
-     */
+
     public void exitGame() {
         System.out.println("exit game");
         Platform.exit(); // Shuts down in the standard way, closing open windows and cleaning resources
     }
 
-    /**
-     * Show the main menu.
-     */
+ 
     public void MenuShow() {
         stage.show(); // Shows the MainMenu
     }
 }
 
-//ISSUE to be fixed Ram consumption from high quality images
