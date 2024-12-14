@@ -1,0 +1,45 @@
+/* Style for the entire slider */
+.slider {
+    -fx-pref-width: 200px; /* Adjust the width of the slider */
+    -fx-pref-height: 30px; /* Adjust the height of the slider */
+    -fx-padding: 5px; /* Add padding for a cleaner appearance */
+}
+
+/* Style for the slider's track (the line the thumb moves along) */
+.slider .track {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #8BC34A); /* Add a gradient effect */
+    -fx-background-radius: 5px; /* Smooth rounded corners */
+    -fx-border-color: #6D6D6D; /* Add a border for better visibility */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-min-height: 6px; /* Thickness of the track */
+    -fx-max-height: 6px; /* Consistent thickness */
+}
+
+/* Style for the slider's thumb (the draggable part) */
+.slider .thumb {
+    -fx-background-color: #FF5722; /* Add a vibrant color to the thumb */
+    -fx-border-color: #FFFFFF; /* Add a contrasting border */
+    -fx-border-width: 2px;
+    -fx-border-radius: 50%; /* Make the thumb circular */
+    -fx-min-width: 15px; /* Adjust thumb size */
+    -fx-min-height: 15px; /* Adjust thumb size */
+    -fx-max-width: 15px; /* Consistent size */
+    -fx-max-height: 15px; /* Consistent size */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 4, 0.5, 1, 1); /* Optional shadow for depth */
+}
+
+/* Style for the slider's tick marks (optional) */
+.slider .tick-mark {
+    -fx-background-color: #9E9E9E; /* Customize tick mark color */
+    -fx-min-width: 2px; /* Tick thickness */
+    -fx-min-height: 10px; /* Tick height */
+    -fx-background-radius: 1px; /* Smooth edges */
+}
+
+/* Style for the slider's tick labels (optional) */
+.slider .label {
+    -fx-text-fill: #666666; /* Tick label text color */
+    -fx-font-size: 12px; /* Font size for labels */
+    -fx-font-family: Arial, sans-serif; /* Font family for labels */
+}
