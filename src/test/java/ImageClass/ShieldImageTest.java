@@ -13,6 +13,8 @@ import static org.junit.Assert.*;
  * This class provides unit tests for the {@link ShieldImage} class, including its initialization
  * and the behavior of showing or hiding the shield.
  * </p>
+ * Source Code: <a href="https://github.com/AmeenSharyf/CW2024/blob/master/src/test/java/ImageClass/ShieldImageTest.java">
+ * GitHub Link</a>
  */
 public class ShieldImageTest {
     /**
