@@ -16,6 +16,12 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for the LevelSceneInitialization class.
+ * This test class uses JUnit and mocks to simulate the behavior of the LevelSceneInitialization class.
+ * Source Code: <a href="https://github.com/AmeenSharyf/CW2024/blob/master/src/test/java/Level/LevelSceneInitializationTest.java">
+ * GitHub Link</a>
+*/
 public class LevelSceneInitializationTest {
 
     private LevelSceneInitialization levelSceneInitialization;
@@ -23,8 +29,10 @@ public class LevelSceneInitializationTest {
 
     private Timeline mockTimeline;
 
-
-
+    /**
+     * Sets up the JavaFX environment before any tests are run.
+     * This method initializes the JavaFX platform if it is not already started.
+     */
     @BeforeAll
     static void setupJavaFX() {
         if (!Platform.isFxApplicationThread()) {
@@ -32,16 +40,24 @@ public class LevelSceneInitializationTest {
         }
     }
 
+    /**
+     * Sets up the test environment before each test.
+     * Initializes-mocks and creates an instance of LevelSceneInitialization with mock dependencies.
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
         mockRoot = mock(Group.class);
         mockTimeline = mock(Timeline.class);
 
-
         levelSceneInitialization = new LevelSceneInitialization("/com/example/demo/images/Backgrounds/background1.jpg", 800, 600, 100, mockRoot);
     }
 
+    /**
+     * Tests the StartGame method of LevelSceneInitialization.
+     * Simulates starting the game and verifies that the timeline's play method is called
+     * and that the focus is requested from the root group.
+     */
     @Test
     void testStartGame() {
         // Call StartGame method

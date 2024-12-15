@@ -13,6 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+/**
+ * Unit tests for the UserInputSystem class.
+ * This test class uses TestFX to simulate user inputs and validate the behavior of the UserInputSystem.
+ * Source Code: <a href="https://github.com/AmeenSharyf/CW2024/blob/master/src/test/java/Managers/UserInputSystemTest.java">
+ * GitHub Link</a>
+ */
 public class UserInputSystemTest extends ApplicationTest {
 
     private UserInputSystem userInputSystem;
@@ -23,6 +29,10 @@ public class UserInputSystemTest extends ApplicationTest {
     private UserProjectileManager mockProjectileManager;
     private SoundEffects mockSoundEffects;
 
+    /**
+     * Sets up the test environment before each test.
+     * Mocks dependencies and initializes the UserInputSystem.
+     */
     @BeforeEach
     void setUp() {
         // Mock the dependencies
@@ -43,6 +53,10 @@ public class UserInputSystemTest extends ApplicationTest {
         userInputSystem.InputSystem();
     }
 
+    /**
+     * Tests the behavior when the 'W' key is pressed.
+     * Simulates a 'W' key press and verifies that the moveUp method of UserPlane is called.
+     */
     @Test
     void testMoveUpOnWKeyPressed() {
         // Simulate W key press
@@ -54,6 +68,10 @@ public class UserInputSystemTest extends ApplicationTest {
         verifyNoMoreInteractions(mockUserPlane);
     }
 
+    /**
+     * Tests the behavior when the 'S' key is pressed.
+     * Simulates an 'S' key press and verifies that the moveDown method of UserPlane is called.
+     */
     @Test
     void testMoveDownOnSKeyPressed() {
         // Simulate S key press
@@ -65,6 +83,10 @@ public class UserInputSystemTest extends ApplicationTest {
         verifyNoMoreInteractions(mockUserPlane);
     }
 
+    /**
+     * Tests the behavior when the 'ESCAPE' key is pressed.
+     * Simulates an 'ESCAPE' key press and verifies that the timeline is stopped.
+     */
     @Test
     void testPauseOnEscapeKeyPressed() {
         // Simulate ESCAPE key press

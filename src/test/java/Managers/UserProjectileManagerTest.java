@@ -11,8 +11,19 @@ import org.junit.Assert;
 
 import java.util.List;
 
+/**
+ * Unit tests for the UserProjectileManager class.
+ * This class contains tests that validate the functionality of the UserProjectileManager,
+ * which manages the lifecycle and collection of projectiles fired by the user.
+ * Source Code: <a href="https://github.com/AmeenSharyf/CW2024/blob/master/src/test/java/Managers/UserProjectileManagerTest.java">
+ * GitHub Link</a>
+ */
 public class UserProjectileManagerTest {
 
+    /**
+     * Initializes the JavaFX platform if it hasn't been started already.
+     * This method ensures that the JavaFX environment is ready for testing.
+     */
     @BeforeClass
     public static void setupJavaFX() {
         if (!Platform.isFxApplicationThread()) {
@@ -23,6 +34,10 @@ public class UserProjectileManagerTest {
     private Group root;
     private UserProjectileManager manager;
 
+    /**
+     * Sets up the test environment.
+     * Initializes the root Group and the UserProjectileManager instance, then fires an initial projectile.
+     */
     @Before
     public void setUp() {
         root = new Group();
@@ -30,6 +45,10 @@ public class UserProjectileManagerTest {
         manager.fireProjectile();  // Ensure there is at least one projectile in the list
     }
 
+    /**
+     * Tests retrieving the list of user projectiles.
+     * Fires another projectile and checks that the list of projectiles is not empty and contains the new projectile.
+     */
     @Test
     public void testGetUserProjectiles() {
         // Fire a projectile
@@ -48,7 +67,11 @@ public class UserProjectileManagerTest {
         Assert.assertFalse(projectiles.isEmpty()); // Expecting at least one projectile after firing
     }
 
-
+    /**
+     * Tests the singleton pattern implementation in UserProjectileManager.
+     * Verifies that a new instance of UserProjectileManager with a different root does not create a new instance,
+     * but returns the same instance as the original.
+     */
     @Test
     public void testSingletonPattern() {
         Group newRoot = new Group();
@@ -56,6 +79,10 @@ public class UserProjectileManagerTest {
         Assert.assertSame(manager, newManager);
     }
 
+    /**
+     * Tests the fireProjectile method.
+     * Fires a new projectile and verifies that the projectile count increases and the new projectile is different from the initial one.
+     */
     @Test
     public void testFireProjectile() {
         ActiveActorDestructible initialProjectile = manager.getUserProjectiles().get(0);

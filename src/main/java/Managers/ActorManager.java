@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Manages all active actors (friendly units, enemy units, projectiles) in the game, handling updates and removal of destroyed actors.
+ *
+ * Source Code: <a href="https://github.com/AmeenSharyf/CW2024/blob/master/src/main/java/Managers/ActorManager.java">
+ * GitHub Link</a>
+ */
 public class ActorManager {
     protected final UserPlane user;
     protected final UserProjectileManager userProjectileManager;
@@ -18,6 +24,12 @@ public class ActorManager {
     private int currentNumberOfEnemies;
     private static ActorManager actorManager;
 
+    /**
+     * Constructs a new `ActorManager`.
+     *
+     * @param root         The root `Group` to which all actors are added.
+     * @param screenWidth  The screen width for managing actors' positions.
+     */
     public ActorManager(Group root, double screenWidth) {
         this.screenWidth = screenWidth;
         this.root = root;
@@ -30,38 +42,64 @@ public class ActorManager {
         this.currentNumberOfEnemies = 0;
         friendlyUnits.add(user);
     }
+
+    /**
+     * Retrieves the singleton instance of `ActorManager`.
+     *
+     * @param root         The root `Group` to which all actors are added.
+     * @param screenWidth  The screen width for managing actors' positions.
+     * @return The `ActorManager` instance.
+     */
     public static ActorManager GetActorManager(Group root, double screenWidth) {
         if (actorManager == null) {
             actorManager = new ActorManager(root, screenWidth);
-        }
-        else{
+        } else {
             actorManager.UpdateActorManager(root, screenWidth);
-
         }
 
         return actorManager;
     }
+
+    /**
+     * Updates the `ActorManager` instance with a new root and screen width.
+     *
+     * @param root         The new root `Group` to which all actors are added.
+     * @param screenWidth  The new screen width for managing actors' positions.
+     */
     private void UpdateActorManager(Group root, double screenWidth) {
         this.root = root;
         this.screenWidth = screenWidth;
     }
-    public void ResetList(){
+
+    /**
+     * Clears all lists of actors, resetting the state of the `ActorManager`.
+     */
+    public void ResetList() {
         friendlyUnits.clear();
         enemyUnits.clear();
         enemyProjectiles.clear();
     }
-    public void FriendlyActor(){
+
+    /**
+     * Adds the user plane to the list of friendly units.
+     */
+    public void FriendlyActor() {
         friendlyUnits.add(user);
     }
 
-
-   public void updateActors() {
-    friendlyUnits.forEach(ActiveActorDestructible::updateActor);
-    enemyUnits.forEach(ActiveActorDestructible::updateActor);
-     userProjectileManager.getUserProjectiles().forEach(ActiveActorDestructible::updateActor);
-     enemyProjectiles.forEach(ActiveActorDestructible::updateActor);
+    /**
+     * Updates all actors in the game.
+     */
+    public void updateActors() {
+        friendlyUnits.forEach(ActiveActorDestructible::updateActor);
+        enemyUnits.forEach(ActiveActorDestructible::updateActor);
+        userProjectileManager.getUserProjectiles().forEach(ActiveActorDestructible::updateActor);
+        enemyProjectiles.forEach(ActiveActorDestructible::updateActor);
     }
 
+    /**
+     * Removes all destroyed actors from the game.
+     */
     public void removeAllDestroyedActors() {
         removeDestroyedActors(friendlyUnits);
         removeDestroyedActors(enemyUnits);
@@ -69,6 +107,11 @@ public class ActorManager {
         removeDestroyedActors(enemyProjectiles);
     }
 
+    /**
+     * Removes destroyed actors from a list and updates the root `Group`.
+     *
+     * @param actors  The list of actors to check and remove.
+     */
     public void removeDestroyedActors(List<ActiveActorDestructible> actors) {
         List<ActiveActorDestructible> destroyedActors = actors.stream()
                 .filter(ActiveActorDestructible::isDestroyed)
@@ -77,22 +120,39 @@ public class ActorManager {
         root.getChildren().removeAll(destroyedActors);
         actors.removeAll(destroyedActors);
     }
+
+    /**
+     * Updates the kill count based on the number of destroyed enemies.
+     */
     public void updateKillCount() {
-       for (int i = 0; i < currentNumberOfEnemies - enemyUnits.size(); i++) {
-           user.incrementKillCount();
+        for (int i = 0; i < currentNumberOfEnemies - enemyUnits.size(); i++) {
+            user.incrementKillCount();
         }
     }
 
+    /**
+     * Adds an enemy unit to the game.
+     *
+     * @param enemy  The `ActiveActorDestructible` instance to add.
+     */
     public void addEnemyUnit(ActiveActorDestructible enemy) {
-       enemyUnits.add(enemy);
-       root.getChildren().add(enemy);
+        enemyUnits.add(enemy);
+        root.getChildren().add(enemy);
     }
 
+    /**
+     * Gets the current number of enemies.
+     *
+     * @return The size of the `enemyUnits` list.
+     */
     public int getCurrentNumberOfEnemies() {
-       return enemyUnits.size();
-   }
-   public void updateNumberOfEnemies() {
-      currentNumberOfEnemies = enemyUnits.size();
-  }
+        return enemyUnits.size();
+    }
 
+    /**
+     * Updates the number of enemies managed.
+     */
+    public void updateNumberOfEnemies() {
+        currentNumberOfEnemies = enemyUnits.size();
+    }
 }
