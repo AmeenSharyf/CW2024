@@ -5,12 +5,8 @@ module com.example.demo {
     requires javafx.media;
     requires java.sql;
     requires javafx.graphics;
-    requires junit;
-    requires org.junit.jupiter.api;
-    requires org.mockito;
-    requires org.junit.platform.commons;
-    requires org.junit.platform.engine;
-    requires org.testfx;
+    requires junit;//add library junit to classpath if red
+
 
     opens Menus to javafx.fxml;
     opens Controller to javafx.fxml;
