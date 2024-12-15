@@ -64,7 +64,7 @@ public class SoundEffects {
         }
         if (audioClip == null) {
             audioClip = new AudioClip(audioPath);
-            audioClip.setVolume(DefaultVolume - 0.3); // Reducing volume slightly
+            audioClip.setVolume(DefaultVolume); // Reducing volume slightly
             audioClip.setCycleCount(1);
         } else {
             audioClip.stop();
