@@ -8,8 +8,10 @@ module com.example.demo {
     requires junit;
     requires org.junit.jupiter.api;
     requires org.mockito;
+    requires org.junit.platform.commons;
+    requires org.junit.platform.engine;
+    requires org.testfx;
 
-    exports Controller;
     opens Menus to javafx.fxml;
     opens Controller to javafx.fxml;
     opens Level to javafx.fxml;
@@ -20,9 +22,14 @@ module com.example.demo {
     opens Sound to javafx.fxml;
     opens Plane to javafx.fxml;
 
-
-    exports Managers;
-    exports Sound;
+    exports ActiveActor;
     exports Plane;
+    exports Managers;
+    exports ImageClass;
+    exports Controller;
+    exports Projectile;
+    exports Sound;
     exports Level;
+    exports Menus;
+
 }

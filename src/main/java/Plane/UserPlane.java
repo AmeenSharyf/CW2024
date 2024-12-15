@@ -18,14 +18,14 @@ public class UserPlane extends FighterPlane {
 	private static final double Y_LOWER_BOUND = 600.0;
 	private static final double X_UPPER_BOUND = 500.0; // Added upper bound for horizontal movement
 	private static final double X_LOWER_BOUND = 0.0;   // Added lower bound for horizontal movement
-	private static final double INITIAL_X_POSITION = 5.0;
-	private static final double INITIAL_Y_POSITION = 150.0;
+	protected static final double INITIAL_X_POSITION = 5.0;
+	protected static final double INITIAL_Y_POSITION = 150.0;
 	private static final int IMAGE_HEIGHT = 150;
-	private static final int VERTICAL_VELOCITY = 8;
-	private static final int HORIZONTAL_VELOCITY = 8;
-	private static final int INITIALHEALTH = 5;
-	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
-	private static final int PROJECTILE_X_POSITION_OFFSET = 20;
+	protected static final int VERTICAL_VELOCITY = 8;
+	protected static final int HORIZONTAL_VELOCITY = 8;
+	protected static final int INITIALHEALTH = 5;
+	protected static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+	protected static final int PROJECTILE_X_POSITION_OFFSET = 20;
 	private int HorizontalvelocityMultiplier; // Horizontal velocity multiplier
 	private int VerticalvelocityMultiplier; // Vertical velocity multiplier
 	private int numberOfKills;
@@ -119,7 +119,7 @@ public class UserPlane extends FighterPlane {
 	 *
 	 * @return `true` if the horizontal multiplier is not zero, otherwise `false`.
 	 */
-	private boolean HorizontalMoving() {
+    boolean HorizontalMoving() {
 		return HorizontalvelocityMultiplier != 0;
 	}
 
@@ -128,7 +128,7 @@ public class UserPlane extends FighterPlane {
 	 *
 	 * @return `true` if the vertical multiplier is not zero, otherwise `false`.
 	 */
-	private boolean VerticalMoving() {
+    boolean VerticalMoving() {
 		return VerticalvelocityMultiplier != 0;
 	}
 

@@ -1,7 +1,6 @@
 package Managers;
 
 import ActiveActor.ActiveActorDestructible;
-import Plane.UserPlane;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import org.junit.Before;
@@ -12,17 +11,25 @@ import org.junit.Assert;
 import java.util.List;
 
 /**
- * Unit tests for the UserProjectileManager class.
- * This class contains tests that validate the functionality of the UserProjectileManager,
- * which manages the lifecycle and collection of projectiles fired by the user.
+ * Unit tests for the {@link UserProjectileManager} class.
+ * <p>
+ * This class validates the functionality of {@link UserProjectileManager}, ensuring that
+ * the lifecycle and management of user projectiles are handled correctly. It includes tests
+ * for retrieving projectiles, verifying the singleton pattern, and firing projectiles.
+ * </p>
+ * <p>
  * Source Code: <a href="https://github.com/AmeenSharyf/CW2024/blob/master/src/test/java/Managers/UserProjectileManagerTest.java">
  * GitHub Link</a>
+ * </p>
  */
 public class UserProjectileManagerTest {
 
     /**
-     * Initializes the JavaFX platform if it hasn't been started already.
-     * This method ensures that the JavaFX environment is ready for testing.
+     * Initializes the JavaFX platform if it hasn't already been started.
+     * <p>
+     * This method ensures that the JavaFX environment is ready for testing,
+     * which is necessary for JavaFX-based classes like {@link UserProjectileManager}.
+     * </p>
      */
     @BeforeClass
     public static void setupJavaFX() {
@@ -31,30 +38,43 @@ public class UserProjectileManagerTest {
         }
     }
 
+    /**
+     * The root group used to manage the scene graph during tests.
+     */
     private Group root;
+
+    /**
+     * The {@link UserProjectileManager} instance being tested.
+     */
     private UserProjectileManager manager;
 
     /**
-     * Sets up the test environment.
-     * Initializes the root Group and the UserProjectileManager instance, then fires an initial projectile.
+     * Sets up the test environment before each test.
+     * <p>
+     * This method initializes the root {@link Group} and the singleton instance of
+     * {@link UserProjectileManager}, then fires an initial projectile to ensure
+     * the projectile list is not empty.
+     * </p>
      */
     @Before
     public void setUp() {
         root = new Group();
         manager = UserProjectileManager.Getuserprojectilemanager(root);
-        manager.fireProjectile();  // Ensure there is at least one projectile in the list
+        manager.fireProjectile(); // Ensure there is at least one projectile in the list
     }
 
     /**
-     * Tests retrieving the list of user projectiles.
-     * Fires another projectile and checks that the list of projectiles is not empty and contains the new projectile.
+     * Tests the retrieval of user projectiles.
+     * <p>
+     * This test fires a new projectile, retrieves the list of projectiles, and verifies
+     * that the list is not null, not empty, and contains the newly fired projectile.
+     * </p>
      */
     @Test
     public void testGetUserProjectiles() {
-        // Fire a projectile
         manager.fireProjectile();
 
-        // Add a delay to ensure the projectile is processed (not a best practice but useful for debugging)
+        // Add a delay to ensure the projectile is processed
         try {
             Thread.sleep(100); // Adjust the sleep time as needed
         } catch (InterruptedException e) {
@@ -68,9 +88,11 @@ public class UserProjectileManagerTest {
     }
 
     /**
-     * Tests the singleton pattern implementation in UserProjectileManager.
-     * Verifies that a new instance of UserProjectileManager with a different root does not create a new instance,
-     * but returns the same instance as the original.
+     * Tests the singleton pattern implementation of {@link UserProjectileManager}.
+     * <p>
+     * This test verifies that creating a new {@link UserProjectileManager} instance with
+     * a different root {@link Group} returns the same instance as the original.
+     * </p>
      */
     @Test
     public void testSingletonPattern() {
@@ -80,8 +102,11 @@ public class UserProjectileManagerTest {
     }
 
     /**
-     * Tests the fireProjectile method.
-     * Fires a new projectile and verifies that the projectile count increases and the new projectile is different from the initial one.
+     * Tests the {@link UserProjectileManager#fireProjectile()} method.
+     * <p>
+     * This test verifies that firing a new projectile increases the projectile count
+     * and that the newly fired projectile is different from the initial one.
+     * </p>
      */
     @Test
     public void testFireProjectile() {

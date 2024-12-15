@@ -18,7 +18,7 @@ import javafx.util.Duration;
 public class LevelSceneInitialization {
 
     private final Group root;
-    private final ImageView background;
+    final ImageView background;
     private final double screenHeight;
     private final double screenWidth;
 

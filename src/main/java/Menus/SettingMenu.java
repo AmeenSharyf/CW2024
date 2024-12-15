@@ -51,7 +51,7 @@
         /**
          * The main layout for the settings menu.
          */
-        private StackPane stackPane;
+        StackPane stackPane;
 
         /**
          * The button image for navigating back to the main menu.
@@ -138,7 +138,7 @@
          *
          * @return the {@code Slider} for volume adjustment
          */
-        private Slider createVolumeSlider() {
+        Slider createVolumeSlider() {
             Slider volumeSlider = new Slider(0, 100, SoundEffects.GetVolume() * 100);
             volumeSlider.setShowTickMarks(true);
             volumeSlider.setShowTickLabels(true);
@@ -158,7 +158,7 @@
          *
          * @return the {@code Slider} for difficulty adjustment
          */
-        private Slider createDifficultySlider() {
+        Slider createDifficultySlider() {
             Slider difficultySlider = new Slider(1, 3, difficulty);
             difficultySlider.setShowTickMarks(true);
             difficultySlider.setShowTickLabels(true);
@@ -178,7 +178,7 @@
          *
          * @return the {@code Button} for navigating back
          */
-        private Button createBackButton() {
+        Button createBackButton() {
             Button backButton = new Button();
 
             if (buttonImage == null) {
@@ -194,7 +194,7 @@
         /**
          * Handles the logic for navigating back to the main menu.
          */
-        private void goBack() {
+        void goBack() {
             this.stackPane.getChildren().clear();
             ResetSettingMenu();
         }
