@@ -3,6 +3,7 @@
 ## Github:
 ### https://github.com/AmeenSharyf/CW2024
 ## Compilation Instructions:
+- Download Source code ---> Use IDE(preferebly intellij) ----> Add the project ----> run main class in controller package
 ## Implemented and Working Properly:
 ### Feature 1: Main Menu
 - Provides a clean, interactive starting point for the game, allowing users to navigate between starting the game, adjusting settings, and exiting.
